@@ -1,0 +1,57 @@
+.home-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.restaurant-list {
+  margin-top: 20px;
+}
+
+.restaurant-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.restaurant-item h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.restaurant-item p {
+  color: #666;
+}
+
+.restaurant-item ul {
+  padding-left: 20px;
+}
+
+.restaurant-item li {
+  margin-bottom: 5px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
