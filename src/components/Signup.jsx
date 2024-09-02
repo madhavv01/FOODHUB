@@ -1,53 +1,62 @@
-import React, { useState } from 'react';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { ref, set } from 'firebase/database';
-import { auth, database } from '../firebase/firebase';
-import { useNavigate, Link } from 'react-router-dom';
-import './AuthStyles.css';
+import React, { useState } from "react";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { ref, set } from "firebase/database";
+import { auth, database } from "../firebase/firebase";
+import { useNavigate, Link } from "react-router-dom";
+import BgImage from "../assets/BgImage.jpg";
+import "./AuthStyles.css";
 
 const Signup = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [displayName, setDisplayName] = useState('');
-  const [restaurantName, setRestaurantName] = useState('');
-  const [restaurantDescription, setRestaurantDescription] = useState('');
-  const [foodItems, setFoodItems] = useState('');
-  const [error, setError] = useState('');
-  const [activePanel, setActivePanel] = useState('user');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [displayName, setDisplayName] = useState("");
+  const [restaurantName, setRestaurantName] = useState("");
+  const [restaurantDescription, setRestaurantDescription] = useState("");
+  const [foodItems, setFoodItems] = useState("");
+  const [error, setError] = useState("");
+  const [activePanel, setActivePanel] = useState("user");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const user = userCredential.user;
 
       // Update user profile with display name
       await updateProfile(user, { displayName: displayName });
 
       // If it's an owner, save restaurant details to the database
-      if (activePanel === 'owner') {
-        const foodItemsArray = foodItems.split(',').map(item => {
-          const [name, description] = item.split(':');
-          return { name: name.trim(), description: description.trim() };
+      if (activePanel === "owner") {
+        const foodItemsArray = foodItems.split(",").map((item) => {
+          const [name, description] = item.split(":");
+          return {
+            name: name.trim(),
+            description: description.trim(),
+            notes: [], // Initialize notes as an empty array
+          };
         });
 
-        await set(ref(database, 'restaurants/' + user.uid), {
+        await set(ref(database, "restaurants/" + user.uid), {
           name: restaurantName,
           description: restaurantDescription,
           foodItems: foodItemsArray,
-          ownerId: user.uid
+          ownerId: user.uid,
         });
       }
 
       // Save user type to the database
-      await set(ref(database, 'users/' + user.uid), {
+      await set(ref(database, "users/" + user.uid), {
         email: user.email,
         displayName: displayName,
-        userType: activePanel
+        userType: activePanel,
       });
 
-      navigate('/');
+      navigate("/");
     } catch (error) {
       setError(error.message);
     }
@@ -56,7 +65,7 @@ const Signup = () => {
   const renderSignupForm = (userType) => (
     <form className="auth-form" onSubmit={handleSubmit}>
       <h2>{userType} Signup</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <input
         type="email"
         placeholder="Email"
@@ -78,7 +87,7 @@ const Signup = () => {
         onChange={(e) => setDisplayName(e.target.value)}
         required
       />
-      {userType === 'Owner' && (
+      {userType === "Owner" && (
         <>
           <input
             type="text"
@@ -107,26 +116,34 @@ const Signup = () => {
 
   return (
     <div className="auth-page">
+      <div className="auth-background">
+        <img
+          className="concord-img vlv-creative auth-image"
+          src={BgImage}
+          alt=""
+        />
+        <div className="overlay"></div>
+      </div>
       <div className="toggle-buttons">
-        <button 
-          className={activePanel === 'owner' ? 'active' : ''}
-          onClick={() => setActivePanel('owner')}
+        <button
+          className={activePanel === "owner" ? "active" : ""}
+          onClick={() => setActivePanel("owner")}
         >
           Owner
         </button>
-        <button 
-          className={activePanel === 'user' ? 'active' : ''}
-          onClick={() => setActivePanel('user')}
+        <button
+          className={activePanel === "user" ? "active" : ""}
+          onClick={() => setActivePanel("user")}
         >
           User
         </button>
       </div>
       <div className="panel-container">
-        <div className={`panel ${activePanel === 'owner' ? 'active' : ''}`}>
-          {renderSignupForm('Owner')}
+        <div className={`panel ${activePanel === "owner" ? "active" : ""}`}>
+          {renderSignupForm("Owner")}
         </div>
-        <div className={`panel ${activePanel === 'user' ? 'active' : ''}`}>
-          {renderSignupForm('User')}
+        <div className={`panel ${activePanel === "user" ? "active" : ""}`}>
+          {renderSignupForm("User")}
         </div>
       </div>
       <div className="auth-toggle">

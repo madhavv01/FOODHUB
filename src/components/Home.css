@@ -1,28 +1,53 @@
+.home-container {
+  background-color: black;
+  height: 100vh;
+}
+
 .home-page {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
 }
-
+.home-page h1 {
+  color: #75ad1a;
+}
 .restaurant-list {
   margin-top: 20px;
 }
+.restaurant-list h2 {
+  color: white;
+}
+
+.restaurant-link:hover {
+  text-decoration: none;
+}
 
 .restaurant-item {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  background-color: #353232;
+  /* border: 1px solid #ddd; */
   border-radius: 5px;
   padding: 15px;
   margin-bottom: 20px;
 }
 
+.restaurant-item:hover {
+  background-color: #1f1f1f;
+}
+
 .restaurant-item h3 {
-  margin-top: 0;
-  color: #333;
+  margin: 0;
+  color: #75ad1a;
 }
 
 .restaurant-item p {
-  color: #666;
+  color: #909090;
+  font-size: 12px;
+  margin-top: 0;
+}
+
+.restaurant-item h4 {
+  margin-top: 0;
+  color: #cecece;
 }
 
 .restaurant-item ul {
@@ -31,6 +56,8 @@
 
 .restaurant-item li {
   margin-bottom: 5px;
+  color: #909090;
+  /* list-style: none; */
 }
 
 button {

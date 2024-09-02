@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 import { useNavigate, Link } from "react-router-dom";
 import "./AuthStyles.css";
+import BgImage from "../assets/BgImage.jpg";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -40,11 +41,22 @@ const Login = () => {
         required
       />
       <button type="submit">Login</button>
+      <p>
+        Forgot your password? <Link to="/password-reset">Reset Password</Link>
+      </p>
     </form>
   );
 
   return (
     <div className="auth-page">
+      <div className="auth-background">
+        <img
+          className="concord-img vlv-creative auth-image"
+          src={BgImage}
+          alt=""
+        />
+        <div className="overlay"></div>
+      </div>
       <div className="toggle-buttons">
         <button
           className={activePanel === "admin" ? "active" : ""}
