@@ -5,7 +5,8 @@ import { signOut } from "firebase/auth";
 import { ref, onValue } from "firebase/database";
 import { auth, database } from "../firebase/firebase";
 import "./Home.css";
-import RestaurantList from "./Restaurant/RestaurantList";
+import BgImage from "../assets/BgImage.jpg";
+import Navbar from "./Navbar";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
@@ -44,8 +45,11 @@ const Home = () => {
   const renderRestaurantList = () => (
     <div className="restaurant-list">
       <h2>Top Restaurants </h2>
-      {restaurants.map((restaurant, index) => (
-        <Link className="restaurant-link" to={`/restaurant/${restaurant.id}`}>
+      {restaurants?.map((restaurant, index) => (
+        <Link
+          className="restaurant-link"
+          to={`/restaurant/${restaurant.ownerId}`}
+        >
           <div key={index} className="restaurant-item">
             <h3>{restaurant.name}</h3>
             <p>{restaurant.description}</p>
@@ -62,30 +66,36 @@ const Home = () => {
       ))}
     </div>
   );
-  console.log("user type", userDetails);
-  console.log("user ", user);
+
   return (
-    <div className="home-container">
-      <div className="home-page">
-        <h1>Welcome to Food Hub</h1>
-        {user && userDetails ? (
-          <>
-            {/* <p>Username: {userDetails.displayName}</p> */}
-            {/* usertype-admin, owner, user */}
-            {/* <p>User Type: {userDetails.userType}</p> */}
-            {/* <RestaurantList /> */}
-            {/* <button onClick={handleLogout}>Logout</button> */}
-            {renderRestaurantList()}
-          </>
-        ) : (
-          <>
-            <p>You are not logged in.</p>
+    <div className="home">
+      {user?.uid && <Navbar />}
+      {user && userDetails ? (
+        <div className="home-page">
+          <h1>Welcome to Food Hub</h1>
+          <>{renderRestaurantList()}</>
+        </div>
+      ) : (
+        <div className="home-container">
+          <div className="auth-background">
+            <img
+              className="concord-img vlv-creative auth-image"
+              src={BgImage}
+              alt=""
+            />
+            <div className="overlay"></div>
+          </div>
+          <div className="home-page">
+            <h2 className="home-welcome">Welcome to Food Hub</h2>
+          </div>
+          <div className="home-login">
+            {/* <p>You are not logged in.</p> */}
             <Link to="/login">Login</Link>
             <br />
             <Link to="/signup">Sign Up</Link>
-          </>
-        )}
-      </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

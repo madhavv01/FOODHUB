@@ -97,7 +97,7 @@ const Signup = () => {
             required
           />
           <textarea
-            placeholder="Restaurant Description"
+            placeholder="Restaurant Cuisine"
             value={restaurantDescription}
             onChange={(e) => setRestaurantDescription(e.target.value)}
             required

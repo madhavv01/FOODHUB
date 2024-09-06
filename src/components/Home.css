@@ -1,15 +1,30 @@
-.home-container {
+.home {
+  min-height: 100vh;
   background-color: black;
-  height: 100vh;
+}
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  min-height: 100vh;
 }
 
 .home-page {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  z-index: 30;
 }
 .home-page h1 {
-  color: #75ad1a;
+  color: #ffa800;
+}
+
+.home-welcome {
+  color: white;
+  font-size: 44px;
+  text-align: center;
 }
 .restaurant-list {
   margin-top: 20px;
@@ -23,7 +38,7 @@
 }
 
 .restaurant-item {
-  background-color: #353232;
+  background-color: #141414;
   /* border: 1px solid #ddd; */
   border-radius: 5px;
   padding: 15px;
@@ -36,7 +51,7 @@
 
 .restaurant-item h3 {
   margin: 0;
-  color: #75ad1a;
+  color: #ffa800;
 }
 
 .restaurant-item p {
@@ -61,7 +76,7 @@
 }
 
 button {
-  background-color: #007bff;
+  background-color: #ffa800;
   color: white;
   border: none;
   padding: 10px 15px;
@@ -71,14 +86,36 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #c58300;
 }
 
 a {
-  color: #007bff;
+  color: #ffa800;
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+.home-login {
+  z-index: 40;
+  display: flex;
+  padding: 20px;
+  /* background-color: #141414; */
+  gap: 10px;
+  border-radius: 10px;
+}
+
+.home-login a {
+  padding: 10px;
+  background-color: #ffa800;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.home-login a:hover {
+  background-color: #c58300;
 }
