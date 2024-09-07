@@ -17,47 +17,52 @@ const Signup = () => {
   const [activePanel, setActivePanel] = useState("user");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = userCredential.user;
+    let user;
 
-      await updateProfile(user, { displayName: displayName });
-
-      if (activePanel === "owner") {
-        const foodItemsArray = foodItems.split(",").map((item) => {
-          const [name, description] = item.split(":");
-          return {
-            name: name.trim(),
-            description: description.trim(),
-            notes: [], 
-          };
-        });
-
-        await set(ref(database, "restaurants/" + user.uid), {
-          name: restaurantName,
-          description: restaurantDescription,
-          foodItems: foodItemsArray,
-          ownerId: user.uid,
-        });
-      }
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        user = userCredential.user;
 
       
-      await set(ref(database, "users/" + user.uid), {
-        email: user.email,
-        displayName: displayName,
-        userType: activePanel,
-      });
+        return updateProfile(user, { displayName: displayName });
+      })
+      .then(() => {
+        
+        if (activePanel === "owner") {
+          const foodItemsArray = foodItems.split(",").map((item) => {
+            const [name, description] = item.split(":");
+            return {
+              name: name.trim(),
+              description: description.trim(),
+              notes: [],
+            };
+          });
 
-      navigate("/");
-    } catch (error) {
-      setError(error.message);
-    }
+          return set(ref(database, "restaurants/" + user.uid), {
+            name: restaurantName,
+            description: restaurantDescription,
+            foodItems: foodItemsArray,
+            ownerId: user.uid,
+          });
+        }
+        return Promise.resolve(); // return a resolved promise if not owner
+      })
+      .then(() => {
+        
+        return set(ref(database, "users/" + user.uid), {
+          email: user.email,
+          displayName: displayName,
+          userType: activePanel,
+        });
+      })
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   };
 
   const renderSignupForm = (userType) => (
@@ -101,7 +106,7 @@ const Signup = () => {
             required
           />
           <textarea
-            placeholder="Food Items (format: name: description, name: description)"
+            placeholder="Food Items (format example: name : description, name: description)"
             value={foodItems}
             onChange={(e) => setFoodItems(e.target.value)}
             required

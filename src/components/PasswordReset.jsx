@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { sendPasswordResetEmail } from "firebase/auth";
-import { auth } from "../firebase/firebase"; // Update this path as per your project structure
+import { auth } from "../firebase/firebase";
 import { Link } from "react-router-dom";
 import BgImage from "../assets/BgImage.jpg";
 import "./AuthStyles.css";
@@ -10,16 +10,17 @@ const PasswordReset = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  const handlePasswordReset = async (e) => {
+  const handlePasswordReset = (e) => {
     e.preventDefault();
-    try {
-      await sendPasswordResetEmail(auth, email);
-      setMessage("A password reset link has been sent to your email.");
-      setError("");
-    } catch (error) {
-      setError(error.message);
-      setMessage("");
-    }
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        setMessage("password reset link sent to your email.");
+        setError("");
+      })
+      .catch((error) => {
+        setError(error.message);
+        setMessage("");
+      });
   };
 
   return (
