@@ -9,16 +9,18 @@ const Signup = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      navigate("/");
-    } catch (error) {
-      setError("Failed to create an account");
-      console.error(error);
-    }
+  
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        setError("Failed to create an account");
+        console.error(error);
+      });
   };
 
   return (
