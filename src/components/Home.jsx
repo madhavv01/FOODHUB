@@ -16,14 +16,14 @@ const Home = () => {
 
   useEffect(() => {
     if (user) {
-      // Fetch user details
+      
       const userRef = ref(database, "users/" + user.uid);
       onValue(userRef, (snapshot) => {
         const data = snapshot.val();
         setUserDetails(data);
       });
 
-      // Fetch all restaurants
+      
       const restaurantsRef = ref(database, "restaurants");
       onValue(restaurantsRef, (snapshot) => {
         const data = snapshot.val();
@@ -32,15 +32,6 @@ const Home = () => {
       });
     }
   }, [user]);
-
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      navigate("/login");
-    } catch (error) {
-      console.error("Error signing out: ", error);
-    }
-  };
 
   const renderRestaurantList = () => (
     <div className="restaurant-list">
@@ -89,7 +80,7 @@ const Home = () => {
             <h2 className="home-welcome">Welcome to Food Hub</h2>
           </div>
           <div className="home-login">
-            {/* <p>You are not logged in.</p> */}
+            {}
             <Link to="/login">Login</Link>
             <br />
             <Link to="/signup">Sign Up</Link>
