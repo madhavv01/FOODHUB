@@ -12,15 +12,15 @@ const Login = () => {
   const [activePanel, setActivePanel] = useState("user");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate("/");
-    } catch (error) {
-      setError(error.message);// error 
-
-    }
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   };
 
   const renderLoginForm = (userType) => (
