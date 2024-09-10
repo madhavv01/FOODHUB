@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { sendPasswordResetEmail } from "firebase/auth";
-import { auth } from "../firebase/firebase";
+import { auth } from "../firebase/firebase"; 
 import { Link } from "react-router-dom";
 import BgImage from "../assets/BgImage.jpg";
 import "./AuthStyles.css";
@@ -14,7 +14,7 @@ const PasswordReset = () => {
     e.preventDefault();
     sendPasswordResetEmail(auth, email)
       .then(() => {
-        setMessage("password reset link sent to your email.");
+        setMessage("A password reset link has been sent to your email.");
         setError("");
       })
       .catch((error) => {

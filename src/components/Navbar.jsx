@@ -12,7 +12,6 @@ const Navbar = () => {
   const [userDetails, setUserDetails] = useState(null);
   useEffect(() => {
     if (user) {
-      
       const userRef = ref(database, "users/" + user.uid);
       onValue(userRef, (snapshot) => {
         const data = snapshot.val();

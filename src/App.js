@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import PasswordReset from "./components/PasswordReset"; // Import the PasswordReset component
+import PasswordReset from "./components/PasswordReset"; 
 import { AuthProvider } from "./contexts/AuthContext";
 import RestaurantDetails from "./components/Restaurant/RestaurantDetails";
 

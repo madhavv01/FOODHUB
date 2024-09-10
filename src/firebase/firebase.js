@@ -3,14 +3,14 @@ import { getAuth } from "firebase/auth";
 import { getDatabase } from 'firebase/database';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBzpotqBfYVAFl3fQOGx8kzHbVVTMG_QsI",
-  authDomain: "restaurant-review-projec-3175e.firebaseapp.com",
-  databaseURL: "https://restaurant-review-projec-3175e-default-rtdb.firebaseio.com",
-  projectId: "restaurant-review-projec-3175e",
-  storageBucket: "restaurant-review-projec-3175e.appspot.com",
-  messagingSenderId: "528301841614",
-  appId: "1:528301841614:web:a11ca9fa783bb8abc9849f",
-  measurementId: "G-WQSG62BWKP"
+  apiKey: "AIzaSyC7TPInJ-e6ZUrXuEjkLpEovU7Q2CgjOZw",
+  authDomain: "restaurent-c8b92.firebaseapp.com",
+  databaseURL: "https://restaurent-c8b92-default-rtdb.firebaseio.com",
+  projectId: "restaurent-c8b92",
+  storageBucket: "restaurent-c8b92.appspot.com",
+  messagingSenderId: "25442448684",
+  appId: "1:25442448684:web:0d226adb49405c9b90e889",
+  measurementId: "G-4TL2YK90E5",
 };
 
 const app = initializeApp(firebaseConfig);

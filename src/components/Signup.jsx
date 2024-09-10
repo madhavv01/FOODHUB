@@ -25,18 +25,18 @@ const Signup = () => {
       .then((userCredential) => {
         user = userCredential.user;
 
-      
+
         return updateProfile(user, { displayName: displayName });
       })
       .then(() => {
-        
+
         if (activePanel === "owner") {
           const foodItemsArray = foodItems.split(",").map((item) => {
             const [name, description] = item.split(":");
             return {
               name: name.trim(),
               description: description.trim(),
-              notes: [],
+              notes: [], 
             };
           });
 
@@ -47,11 +47,10 @@ const Signup = () => {
             ownerId: user.uid,
           });
         }
-        return Promise.resolve(); // return a resolved promise if not owner
+        return Promise.resolve(); 
       })
       .then(() => {
-        
-        return set(ref(database, "users/" + user.uid), {
+                return set(ref(database, "users/" + user.uid), {
           email: user.email,
           displayName: displayName,
           userType: activePanel,
@@ -106,7 +105,7 @@ const Signup = () => {
             required
           />
           <textarea
-            placeholder="Food Items (format example: name : description, name: description)"
+            placeholder="Food Items (format: name: description, name: description)"
             value={foodItems}
             onChange={(e) => setFoodItems(e.target.value)}
             required

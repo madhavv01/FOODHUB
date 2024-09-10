@@ -1,0 +1,119 @@
+.restaurant-details {
+  padding: 20px;
+  margin: 0px;
+}
+
+.restaurant-details h2 {
+  font-size: 36px;
+  color: #ffa800;
+  margin: 0px;
+}
+
+.restaurant-details p {
+  font-size: 18px;
+  color: #909090;
+  margin: 0px;
+}
+
+.food-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.food-list-container h3 {
+  color: white;
+  font-size: 24px;
+}
+
+.food-list {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0px;
+}
+
+.food-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #141414;
+  margin: 20px;
+  color: #909090;
+  list-style: none;
+}
+
+.food-card strong {
+  color: white;
+  font-size: 20px;
+}
+.food-card span {
+  color: #909090;
+  font-size: 14px;
+}
+.food-desc {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  
+}
+.notes-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+}
+.food-card h4 {
+  color: #ffa800;
+  font-size: 16px;
+  margin: 0px;
+  display: inline;
+}
+.food-card button {
+  color: black;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.food-card form {
+  width: 100%;
+}
+.food-card input {
+  background-color: #141414;
+  border: 1px solid #909090;
+  padding: 8px;
+  color: white;
+  margin: 10px 20px 10px 0px;
+  border-radius: 5px;
+}
+.food-card input:focus {
+  outline: 1px solid #ffa800;
+}
+
+.notes-heading {
+  align-items: end;
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
+}
+
+.food-notes {
+  margin: 0px;
+}
+.food-notes li {
+  margin: 0px;
+  list-style: disc;
+  gap: 10px;
+}
+
+.food-notes li span {
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .food-card input {
+    width: 100%;
+    margin-right: 0px;
+  }
+}

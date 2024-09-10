@@ -1,6 +1,6 @@
 .home {
   min-height: 100vh;
-  background-color: rgb(0, 0, 0);
+  background-color: black;
 }
 .home-container {
   display: flex;
@@ -100,7 +100,6 @@ a:hover {
   z-index: 40;
   display: flex;
   padding: 20px;
-  /* background-color: #141414; */
   gap: 10px;
   border-radius: 10px;
 }
