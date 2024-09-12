@@ -26,7 +26,7 @@ const RestaurantDetails = () => {
           ...item,
           notes: Array.isArray(item.notes) ? item.notes : [], 
         }));
-        // Fetch images for the food items
+        // Fetching images for the food items
         fetchFoodImages(foodItems)
           .then((updatedFoodItems) => {
             setRestaurant({ id, ...data, foodItems: updatedFoodItems });
